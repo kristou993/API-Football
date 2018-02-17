@@ -3,23 +3,152 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Hello Ionic</ion-title>
+    <ion-title>Football en direct</ion-title>
   </ion-navbar>
 </ion-header>
 
 
+
+
 <ion-content padding>
 
-  <h3>Welcome to your first Ionic app!</h3>
+    <form (ngSubmit)="GetFootball(f); f.reset()" #f="ngForm" *ngIf="!showfoot">
+  
+      <ion-item>
+  <ion-icon name="football"></ion-icon>  <ion-label>Date Début</ion-label>
+<ion-datetime displayFormat="YYYY/MM/DD" #datedeb="ngModel" ngModel id="datedeb" name="datedeb"></ion-datetime>
+</ion-item>
+       <ion-item>
+   
+     <ion-icon name="football"></ion-icon>    <ion-label>Date Fin</ion-label>
+  <ion-datetime displayFormat="YYYY/MM/DD" #datefin="ngModel" ngModel id="datefin" name="datefin"></ion-datetime>
+</ion-item>
+       
+     
+      
+       
+      <button ion-button icon-right  type="submit" block > <ion-icon name="md-football"> valider </ion-icon></button>
 
-  <p>
-    This starter project is our way of helping you get a functional app running in record time.
-  </p>
-  <p>
-    Follow along on the tutorial section of the Ionic docs!
-  </p>
-  <p>
-    <button ion-button color="primary" menuToggle>Toggle Menu</button>
-  </p>
+    </form>
+
+
+
+
+
+
+
+
+<div *ngIf="showfoot">
+   <ion-title><ion-icon name="football"></ion-icon> Football en direct</ion-title>
+
+<ion-list>
+  <ion-list-header>
+ <ion-thumbnail item-start>
+       <img src="http://e0.365dm.com/16/08/1-1/40/pl-logo-blog-premier-league_3758341.jpg?20160805124844">
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let f of foot">
+      <p> {{f.match_hometeam_name}} : {{f.match_hometeam_score}} - {{f.match_awayteam_score}} : {{f.match_awayteam_name}}  </p>
+
+      <p> Match date: {{ f.match_date}}  <p>
+      <p> Match time: {{f.match_time}} </p>
+      <p> Statut: {{ f.match_status}} <p>
+           
+      
+  
+              <button ion-button clear item-end (click)="itemTapped($event, f)">Détails</button>
+
+  </ion-item>
+
+</ion-list>
+<br>
+
+
+
+<ion-list>
+  
+  <ion-list-header>
+ <ion-thumbnail item-start>
+        <img src="https://static.wixstatic.com/media/e5e1b0_524c409590704b938e96727315e61052~mv2.png/v1/fill/w_182,h_182,al_c,usm_0.66_1.00_0.01/e5e1b0_524c409590704b938e96727315e61052~mv2.png">
+
+        
+    
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let f of BBVA">
+      <p> {{f.match_hometeam_name}} : {{f.match_hometeam_score}} - {{f.match_awayteam_score}} : {{f.match_awayteam_name}}  </p>
+
+      <p> Match date: {{ f.match_date}}  <p>
+      <p> Match time: {{f.match_time}} </p>
+      <p> Statut: {{ f.match_status}} <p>
+           
+      
+  
+             
+              <button ion-button clear item-end (click)="itemTapped($event, f)">Détails</button>
+
+  </ion-item>
+
+</ion-list>
+<br>
+<ion-list>
+  
+  <ion-list-header>
+ <ion-thumbnail item-start>
+        <img src="http://www.legaseriea.it/assets/legaseriea/images/logo.png?v=20170629">
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let f of SeriaA">
+      <p> {{f.match_hometeam_name}} : {{f.match_hometeam_score}} - {{f.match_awayteam_score}} : {{f.match_awayteam_name}}  </p>
+
+      <p> Match date: {{ f.match_date}}  <p>
+      <p> Match time: {{f.match_time}} </p>
+      <p> Statut: {{ f.match_status}} <p>
+           
+      
+  
+
+
+              <button ion-button clear item-end (click)="itemTapped($event, f)">Détails</button>
+
+  </ion-item>
+
+</ion-list>
+
+
+
+<ion-list>
+  
+  <ion-list-header>
+ <ion-thumbnail item-start>
+        <img src="http://img.class.posot.de/de_de/2017/10/16/HSV-FCB-Uhr-20171016202536.jpg">
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let f of Germany">
+      <p> {{f.match_hometeam_name}} : {{f.match_hometeam_score}} - {{f.match_awayteam_score}} : {{f.match_awayteam_name}}  </p>
+
+      <p> Match date: {{ f.match_date}}  <p>
+      <p> Match time: {{f.match_time}} </p>
+      <p> Statut: {{ f.match_status}} <p>
+           
+      
+  
+
+   
+              <button ion-button clear item-end (click)="itemTapped($event, f)">Détails</button>
+
+  </ion-item>
+
+</ion-list>
+
+
+
+
+
+
+</div>
+
+  
+
 
 </ion-content>

@@ -3,16 +3,59 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Item Details</ion-title>
+    <ion-title>Match détails</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <h3 text-center *ngIf="selectedItem">
-    {{selectedItem.title}}
-    <ion-icon [name]="selectedItem.icon"></ion-icon>
-  </h3>
-  <h4 text-center *ngIf="selectedItem">
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </h4>
+  <ion-card>
+  <ion-card-header>
+             <p>{{selectedItem.match_hometeam_name}} : {{selectedItem.match_hometeam_score}} - {{selectedItem.match_awayteam_score}} : {{selectedItem.match_awayteam_name}} 
+</p>
+<br>
+ <button ion-button clear icon-left  (click)="facebook()"><ion-icon name="logo-facebook">   </ion-icon>  Facebook   </button>
+  <button ion-button clear color="danger" icon-left  (click)="Instagram()"><ion-icon name="logo-instagram">   </ion-icon>  Instagram   </button>
+
+  </ion-card-header>
+  <ion-card-content>
+  
+    <ion-list>
+  <ion-list-header>
+ <ion-thumbnail item-start>
+      <ion-title>  <img src="https://pbs.twimg.com/profile_images/902542584966414336/QVJeUGIs.jpg"> </ion-title>
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let d of selectedItem.goalscorer">
+     <p> <ion-icon name="football"></ion-icon>  GOAL  {{d.time}} </p>
+                 <p>  <ion-icon name="ios-body" ></ion-icon>  Marqué par : {{d.home_scorer}}  {{d.away_scorer}} </p>
+                  <p> <ion-icon name="football"></ion-icon> Score : {{d.score}} </p>
+
+  </ion-item>
+
+</ion-list>
+    
+<br>
+
+<ion-list>
+  <ion-list-header>
+ <ion-thumbnail item-start>
+    <ion-title><img src="https://www.aktivsport.hu/public/0808/product/742/680/thumb/biroi-lap-piros-sarga-130010001189_cccd6e50a5e5dc278d842cec7df9da1f.jpg">  </ion-title>
+  </ion-thumbnail>
+  </ion-list-header>
+  <ion-item *ngFor="let d of selectedItem.cards">
+   <p>   <ion-icon name="football"></ion-icon>  Card :  {{d.time}} : {{d.card}} </p>
+   <p>  <ion-icon name="ios-body"></ion-icon>  Joueur  : {{d.home_fault}}  {{d.away_fault}} </p>
+
+  </ion-item>
+
+</ion-list>
+
+
+            
+  </ion-card-content>
+</ion-card>
+
+    
+             
+  
 </ion-content>
